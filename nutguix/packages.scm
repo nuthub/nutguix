@@ -1,4 +1,4 @@
-(define-module (nuts packages)
+(define-module (nutguix packages)
   #:use-module (guix packages)
   #:use-module (guix build-system trivial)
   #:use-module (guix licenses)
@@ -30,6 +30,10 @@
      (list i3-wm
 	   i3status
 	   i3lock
+	   gvfs
+	   pcmanfm
+	   polybar
+	   dunst
 	   st
 	   dmenu))
     (propagated-inputs
