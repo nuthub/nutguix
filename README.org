@@ -1,0 +1,19 @@
+# Personal Guix Package Channel
+
+This personal channel is used for packages that are not (yet) available in [[https://guix.gnu.org/][GNU Guix]] or [[https://gitlab.com/nonguix/nonguix][nonguix]], but I'd like to use.
+
+* Channel introduction
+
+Add this channel definition to your =~/config/guix/channels.scm=:
+
+#+begin_src scheme
+  (channel
+   (name 'nutguix)
+   (url "https://github.com/nuthub/nutguix")
+   (branch "main")
+   (introduction
+    (make-channel-introduction
+     "2177d1c012472ebe03a4248dd4fe3a8220d26856"
+     (openpgp-fingerprint
+      "99A2 CE39 CD81 BD0A 0423  3B9D A998 EA3B DF45 39EF"))))
+#+end_src
