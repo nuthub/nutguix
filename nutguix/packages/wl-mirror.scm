@@ -39,10 +39,10 @@
       (inputs
        (list wayland))
       (home-page "https://gitlab.freedesktop.org/wlroots/wlr-protocols")
-      (synopsis "Wayland protocols designed for use in wlroots (and other compositors).")
+      (synopsis "Wayland protocols")
       (description
        "Wayland protocols designed for use in wlroots (and other compositors).")
-      ;; TODO unknown LICENSE
+      ;; TODO unknown LICENSE, although xml files are MIT licensed
       (license expat))))
 
 

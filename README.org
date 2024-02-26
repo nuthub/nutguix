@@ -13,7 +13,7 @@ Add this channel definition to your =~/config/guix/channels.scm=:
    (branch "main")
    (introduction
     (make-channel-introduction
-     "2177d1c012472ebe03a4248dd4fe3a8220d26856"
+     "1fe9a666b2e6c3398a5057f861986d3183bdab2a"
      (openpgp-fingerprint
       "99A2 CE39 CD81 BD0A 0423  3B9D A998 EA3B DF45 39EF"))))
 #+end_src
