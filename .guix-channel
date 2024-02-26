@@ -1,3 +1,8 @@
 (channel
-  (version 0)
-  (url "https://github.com/nuthub/nutguix"))
+ (version 0)
+ (url "https://github.com/nuthub/nutguix")
+ (dependencies
+  ;; we need nonguix for nonfree license definition
+  (channel
+   (name nonguix)
+   (url "https://gitlab.com/nonguix/nonguix"))))
