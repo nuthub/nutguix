@@ -15,7 +15,7 @@
 (define-public gtklp
   (package
     (name "gtklp")
-    (version "1.3.3")
+    (version "1.3.4")
     (source (origin
 	      (method url-fetch)
 	      (uri
@@ -24,7 +24,7 @@
 		"/gtklp-" version ".src.tar.gz"))
 	      (sha256
 	       (base32
-		"1gzv5fjnlkzi6fjv0xwh8c21z12rb4lb6306pazmbs73p0i5q43f"))))
+		"1arvnnvar22ipgnzqqq8xh0kkwyf71q2sfsf0crajpsr8a8601xy"))))
     (build-system gnu-build-system)
     (arguments
      (list
