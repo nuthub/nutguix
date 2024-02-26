@@ -1,3 +1,5 @@
+;;; Copyright © 2024 Julian Flake <flake@uni-koblenz.de>
+
 (define-module (nutguix packages gtklp)
   #:use-module (guix packages)
   #:use-module (guix download)
@@ -15,13 +17,13 @@
     (name "gtklp")
     (version "1.3.3")
     (source (origin
-              (method url-fetch)
-              (uri
+	      (method url-fetch)
+	      (uri
 	       (string-append
 		"https://master.dl.sourceforge.net/project/gtklp/gtklp/" version
 		"/gtklp-" version ".src.tar.gz"))
-              (sha256
-               (base32
+	      (sha256
+	       (base32
 		"1gzv5fjnlkzi6fjv0xwh8c21z12rb4lb6306pazmbs73p0i5q43f"))))
     (build-system gnu-build-system)
     (arguments
