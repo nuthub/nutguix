@@ -1,11 +1,11 @@
 ;;; Copyright © 2024 Julian Flake <flake@uni-koblenz.de>
 
 (define-module (nutguix packages wl-mirror)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
-  #:use-module (guix licenses)
   #:use-module (guix gexp)
   #:use-module (gnu packages base)
   #:use-module (gnu packages pkg-config)
@@ -29,13 +29,10 @@
 		  "045jj3mbhi7p2qn59krz0vap0wd3i6zgwkvpl97idy702bnk9mv6"))))
       (build-system gnu-build-system)
       (arguments
-       '(#:phases (modify-phases %standard-phases
-		    (delete 'configure)
-		    (add-before 'build 'set-prefix-in-makefile
-		      (lambda* (#:key outputs #:allow-other-keys)
-			(let ((out (assoc-ref outputs "out")))
-			  (substitute* "Makefile"
-			    (("PREFIX=.*") (string-append "PREFIX="out "\n")))))))))    
+       '(#:make-flags (list
+		       (string-append "PREFIX=" (assoc-ref %outputs "out")))
+	 #:phases (modify-phases %standard-phases
+		    (delete 'configure))))
       (inputs
        (list wayland))
       (home-page "https://gitlab.freedesktop.org/wlroots/wlr-protocols")
@@ -43,7 +40,7 @@
       (description
        "Wayland protocols designed for use in wlroots (and other compositors).")
       ;; TODO unknown LICENSE, although xml files are MIT licensed
-      (license expat))))
+      (license license:expat))))
 
 
 (define-public wl-mirror
@@ -75,4 +72,4 @@
     (synopsis "A simple Wayland output mirror client")
     (description
      "wl-mirror attempts to provide a solution to sway's lack of output mirroring by mirroring an output onto a client surface.")
-    (license gpl3)))
+    (license license:gpl3)))
