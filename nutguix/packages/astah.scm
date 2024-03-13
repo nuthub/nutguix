@@ -10,9 +10,11 @@
 
 ;; Getting the binary:
 ;;
-;; guix download https://cdn.change-vision.com/files/astah-professional_9.0.0.1778f1-0_all.deb
+;; guix download url (which is the target of all redirections. So better download in browser and copy effective URL from there)
 ;; ar x wga0hq1569ki48amhhv7rs5zk8a2rr0j-astah-professional_9.0.0.1778f1-0_all.deb
 ;; xz -d data.tar.xz
+;; we use the deb package as the basis, because that package is better organized than the zip release
+
 
 (define-public astah-professional
 
