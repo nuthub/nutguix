@@ -18,14 +18,14 @@
 
   (package
    (name "astah-professional")
-   (version "9.1.0.448a59")
+   (version "9.2.0.0248cd")
    (source
     (origin
      (method url-fetch)
-     (uri "https://members.change-vision.com/files/_nuZcCTv0drWtVho9iny46quMMkd8aCt7/astah_professional/9_1_0/astah-professional_9.1.0.448a59-0_all.deb")
+     (uri "https://members.change-vision.com/files/_EfTycaWjuxKxIiqxCcIZ68vJNAY22QdY/astah_professional/9_2_0/astah-professional_9.2.0.0248cd-0_all.deb")
      (sha256
       (base32
-       "1gbrs8gws9n9p2qd2wjcyx0wicx6nh9zrijkzqj4v98h10dpw0xv"))))
+       "1nqccj4dh53ll5drxf4pj74ab52c31zw8hbs6kw7g51x7fi3wy59"))))
    (build-system copy-build-system)
    (inputs (list binutils))
    (propagated-inputs (list icedtea))
