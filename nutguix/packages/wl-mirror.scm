@@ -45,31 +45,31 @@
 
 (define-public wl-mirror
   (package
-    (name "wl-mirror")
-    (version "0.16.1")
-    (source (origin
-              (method git-fetch)
-	      (uri (git-reference
-		    (url "https://github.com/Ferdi265/wl-mirror")
-		    (commit "v0.16.1")))
-	      (sha256
-	       (base32
-		"0464m60xsbpfwvsszrdkjsxfvrbkr71hp7phsz05cqyvjwf6cism"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      #:tests? #f
-      #:configure-flags
-      #~(list "-DFORCE_SYSTEM_WL_PROTOCOLS=ON"
-	      (string-append "-DWL_PROTOCOL_DIR="
-                             #$(this-package-input "wayland-protocols") "/share/wayland-protocols")
-	      "-DFORCE_SYSTEM_WLR_PROTOCOLS=ON"
-	      (string-append "-DWLR_PROTOCOL_DIR="
-                             #$(this-package-input "wlr-protocols") "/share/wlr-protocols"))))
-    (inputs
-     (list pkg-config egl-wayland mesa wayland wayland-protocols wlr-protocols))
-    (home-page "https://github.com/Ferdi265/wl-mirror")
-    (synopsis "A simple Wayland output mirror client")
-    (description
-     "wl-mirror attempts to provide a solution to sway's lack of output mirroring by mirroring an output onto a client surface.")
-    (license license:gpl3)))
+   (name "wl-mirror")
+   (version "0.16.2")
+   (source (origin
+            (method git-fetch)
+	    (uri (git-reference
+		  (url "https://github.com/Ferdi265/wl-mirror")
+		  (commit (string-append "v" version))))
+	    (sha256
+	     (base32
+	      "1jdycr9vf5skbf55kbm2hc3zl3qg58x3bb6xqkf9qx14m4ramcdj"))))
+   (build-system cmake-build-system)
+   (arguments
+    (list
+     #:tests? #f
+     #:configure-flags
+     #~(list "-DFORCE_SYSTEM_WL_PROTOCOLS=ON"
+	     (string-append "-DWL_PROTOCOL_DIR="
+                            #$(this-package-input "wayland-protocols") "/share/wayland-protocols")
+	     "-DFORCE_SYSTEM_WLR_PROTOCOLS=ON"
+	     (string-append "-DWLR_PROTOCOL_DIR="
+                            #$(this-package-input "wlr-protocols") "/share/wlr-protocols"))))
+   (inputs
+    (list pkg-config egl-wayland mesa wayland wayland-protocols wlr-protocols))
+   (home-page "https://github.com/Ferdi265/wl-mirror")
+   (synopsis "A simple Wayland output mirror client")
+   (description
+    "wl-mirror attempts to provide a solution to sway's lack of output mirroring by mirroring an output onto a client surface.")
+   (license license:gpl3)))
