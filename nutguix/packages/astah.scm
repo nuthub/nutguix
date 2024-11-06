@@ -1,48 +1,40 @@
-;;; Copyright © 2023 Julian Flake <flake@uni-koblenz.de>
+;;; Copyright © 2023,2024 Julian Flake <flake@uni-koblenz.de>
 
 (define-module (nutguix packages astah)
   #:use-module (guix packages)
   #:use-module (guix download)
-  #:use-module (guix build-system copy)
+  #:use-module (nonguix build-system binary)
   #:use-module ((nonguix licenses) #:prefix license:)
   #:use-module (gnu packages base)
-  #:use-module (gnu packages java))
-
-;; Getting the binary:
-;;
-;; guix download url (which is the target of all redirections. So better download in browser and copy effective URL from there)
-;; ar x wga0hq1569ki48amhhv7rs5zk8a2rr0j-astah-professional_9.0.0.1778f1-0_all.deb
-;; xz -d data.tar.xz
-;; we use the deb package as the basis, because that package is better organized than the zip release
-
+  #:use-module (gnu packages gcc))
 
 (define-public astah-professional
-
   (package
-    (name "astah-professional")
-    (version "9.2.0.0248cd")
-    (source
-     (origin
-       (method url-fetch)
-       (uri "https://cdn.change-vision.com/files/astah-professional_9.2.0.0248cd-0_all.deb")
-       (sha256
-	(base32
-	 "1nqccj4dh53ll5drxf4pj74ab52c31zw8hbs6kw7g51x7fi3wy59"))))
-    (build-system copy-build-system)
-    (inputs (list binutils))
-    (propagated-inputs (list icedtea))
-    (arguments
-     '(#:install-plan
-       '(("usr/" "/"))
-       #:phases
-       (modify-phases %standard-phases
-	 (replace 'unpack
-	   (lambda* (#:key source #:allow-other-keys)
-	     (invoke "ar" "x" source)
-	     (invoke "tar" "xf" "data.tar.xz"))))))
-    (synopsis "Astah Professional")
-    (description
-     "Full-Featured Software Modeling Tool for creating UML, ER Diagrams, DFD, Flowchart and more to create a clear understanding of your software design among teams.Easy-to-use UML2.x modeler")
-    (home-page "http://astah.net/products/astah-professional")
-    (license (license:nonfree "file://lib/astah_professional/AstahLicenseAgreement-e.txt"))))
-
+   (name "astah-professional")
+   (version "10.0.0.a1b9b1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (string-append
+	   "https://cdn.change-vision.com/files/astah-professional_"
+	   version
+	   "-0_all.deb"))
+     (sha256
+      (base32
+       "0gk4c5czn5k0hbgbhph6r4ra0z5v97r8w342hbgs8922ghws8j8x"))))
+   (build-system binary-build-system)
+   (inputs
+    `(("gcc:lib" ,gcc "lib")))
+   (arguments
+    `(#:patchelf-plan
+      '(("usr/lib/astah_professional/lib/rlm/librlm1601.so" ("gcc:lib"))
+	("usr/lib/astah_professional/lib/rlm/x64/librlm1601.so" ("gcc:lib")))
+      #:install-plan
+      '(("usr/lib/" "lib")
+	("usr/bin/" "bin")
+	("usr/share/" "share"))))
+   (synopsis "Astah Professional")
+   (description
+    "Full-Featured Software Modeling Tool for creating UML, ER Diagrams, DFD, Flowchart and more to create a clear understanding of your software design among teams. Easy-to-use UML2.x modeler.")
+   (home-page "http://astah.net/products/astah-professional")
+   (license (license:nonfree "file://lib/astah_professional/AstahLicenseAgreement-e.txt"))))
