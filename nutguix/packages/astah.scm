@@ -14,7 +14,7 @@
 (define-public astah-professional
   (package
    (name "astah-professional")
-   (version "10.0.0.a1b9b1")
+   (version "10.1.0.9ceee1")
    (source
     (origin
      (method url-fetch)
@@ -24,7 +24,7 @@
 	   "-0_all.deb"))
      (sha256
       (base32
-       "0gk4c5czn5k0hbgbhph6r4ra0z5v97r8w342hbgs8922ghws8j8x"))))
+       "1yxcl6fqqpc7j75mwrgx4748i0ygal4zkqq9q2xqkfd1nyzrr3lv"))))
    (build-system binary-build-system)
    (inputs
     `(("gcc:lib" ,gcc "lib")))
