@@ -29,11 +29,9 @@
 		 modem-manager
 		 "/share/ModemManager/fcc-unlock.available.d/1eac")
 		(string-append out "/etc/ModemManager/fcc-unlock.d/"))
-	       (install-file
-		(string-append
-		 modem-manager
-		 "/share/ModemManager/fcc-unlock.available.d/1eac:1001")
-		(string-append out "/etc/ModemManager/fcc-unlock.d/"))))))))
+	       (rename-file (string-append out "/etc/ModemManager/fcc-unlock.d/1eac")
+                            (string-append out "/etc/ModemManager/fcc-unlock.d/1eac:100d"))
+	       ))))))
     (synopsis "Activate automatic FCC unlock for Qectel Modems.")
     (description "Activate automatic FCC unlock for Qectel Modems by copying the relevant file into $profile/etc/ModemManager/fcc-unlock.d/")
     (home-page #f)
