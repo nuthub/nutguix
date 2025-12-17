@@ -1,4 +1,4 @@
-;;; Copyright © 2023,2024 Julian Flake <flake@uni-koblenz.de
+;;; Copyright © 2023-2025 Julian Flake <flake@uni-koblenz.de
 
 (define-module (nutguix packages astah)
   #:use-module (guix packages)
@@ -11,10 +11,16 @@
   #:use-module (gnu packages gcc))
 
 ;; I'm using the deb package, because it already has some kind of install plan.
+
+;; https://members.change-vision.com/old/files/_weoCWLvVfVY8MNKEnplFA-Y8D3erxFTT/astah_professional/11_0_0/astah-professional_11.0.0.ba221e-0_all.deb
+;; redirects (302) to
+;; https://cdn.change-vision.com/files/astah-professional_11.0.0.ba221e-0_all.deb
+;; to build locally before pushing to channel: guix build -L ~/git/nutguix  astah-professional
+
 (define-public astah-professional
   (package
    (name "astah-professional")
-   (version "10.1.0.9ceee1")
+   (version "11.0.0.ba221e")
    (source
     (origin
      (method url-fetch)
@@ -24,14 +30,15 @@
 	   "-0_all.deb"))
      (sha256
       (base32
-       "1yxcl6fqqpc7j75mwrgx4748i0ygal4zkqq9q2xqkfd1nyzrr3lv"))))
+       "03dkydgvyh7mpj3xi7v54r1wcfjnfplyikdz15bvajvjn37j6f90"))))
    (build-system binary-build-system)
    (inputs
     `(("gcc:lib" ,gcc "lib")))
    (arguments
     `(#:patchelf-plan
-      '(("usr/lib/astah_professional/lib/rlm/librlm1601.so" ("gcc:lib"))
-	("usr/lib/astah_professional/lib/rlm/x64/librlm1601.so" ("gcc:lib")))
+      '(("usr/lib/astah_professional/lib/rlm/librlm1701.so" ("gcc:lib"))
+	("usr/lib/astah_professional/lib/rlm/x64/librlm1701.so" ("gcc:lib"))
+	("usr/lib/astah_professional/lib/rlm/x86/librlm1233.so" ("gcc:lib")))
       #:install-plan
       '(("usr/lib/" "lib")
 	("usr/bin/" "bin")
@@ -41,6 +48,9 @@
     "Full-Featured Software Modeling Tool for creating UML, ER Diagrams, DFD, Flowchart and more to create a clear understanding of your software design among teams.")
    (home-page "http://astah.net/products/astah-professional")
    (license (license:nonfree "file://lib/astah_professional/AstahLicenseAgreement-e.txt"))))
+
+;; I moved the following two packages to my dotfiles.
+;; Reason: I didn't find a universally elegant way to source the (or an empty) license file from a universally valid uri.
 
 ;; Simply setting the license file via Astah's GUI doesn't work, because $GUIX_PROFILE/lib/astah_professional directory (aka astah install directory) is not writable.
 ;; Therefore, the license file needs to be packaged, in order to be able to place it in the $GUIX_PROFILE/lib/astah_professional
