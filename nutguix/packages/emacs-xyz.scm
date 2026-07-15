@@ -31,3 +31,26 @@
     (description "This package provides a major mode for cypher files, which
 are used in the context of graph databases.")
     (license license:gpl2+))))
+
+;; Waiting for an upstream release
+(define-public emacs-just-mode
+  (package
+    (name "emacs-just-mode")
+    (version "0.1.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/leon-barrett/just-mode.el")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "103jwkmg3dphmr885rpbxjp3x8xw45c0zbcvwarkv4bjhph8y4vh"))))
+    (build-system emacs-build-system)
+    (arguments (list #:tests? #f)) ; no tests
+    (home-page "https://github.com/leon-barrett/just-mode.el")
+    (synopsis "Justfile editing mode")
+    (description
+     "This package provides a major mode for editing justfiles, as defined by the tool
+\"just\": https://github.com/casey/just.")
+    (license license:gpl3+)))
