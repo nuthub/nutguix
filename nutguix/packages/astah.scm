@@ -18,36 +18,37 @@
 ;; to build locally before pushing to channel: guix build -L ~/git/nutguix  astah-professional
 
 (define-public astah-professional
-  (package
-   (name "astah-professional")
-   (version "11.0.0.ba221e")
-   (source
-    (origin
-     (method url-fetch)
-     (uri (string-append
-	   "https://cdn.change-vision.com/files/astah-professional_"
-	   version
-	   "-0_all.deb"))
-     (sha256
-      (base32
-       "03dkydgvyh7mpj3xi7v54r1wcfjnfplyikdz15bvajvjn37j6f90"))))
-   (build-system binary-build-system)
-   (inputs
-    `(("gcc:lib" ,gcc "lib")))
-   (arguments
-    `(#:patchelf-plan
-      '(("usr/lib/astah_professional/lib/rlm/librlm1701.so" ("gcc:lib"))
-	("usr/lib/astah_professional/lib/rlm/x64/librlm1701.so" ("gcc:lib"))
-	("usr/lib/astah_professional/lib/rlm/x86/librlm1233.so" ("gcc:lib")))
-      #:install-plan
-      '(("usr/lib/" "lib")
-	("usr/bin/" "bin")
-	("usr/share/" "share"))))
-   (synopsis "Astah Professional, an Easy-to-use UML2.x modeler")
-   (description
-    "Full-Featured Software Modeling Tool for creating UML, ER Diagrams, DFD, Flowchart and more to create a clear understanding of your software design among teams.")
-   (home-page "http://astah.net/products/astah-professional")
-   (license (license:nonfree "file://lib/astah_professional/AstahLicenseAgreement-e.txt"))))
+  (let ((revision "0"))
+    (package
+      (name "astah-professional")
+      (version "12.0.0.4fa570")
+      (source
+       (origin
+	 (method url-fetch)
+	 (uri (string-append
+	       "https://cdn.change-vision.com/files/astah-professional_"
+	       version "-" revision
+	       "_all.deb"))
+	 (sha256
+	  (base32
+	   "0y7hkddwr1133a6dgl9b8ypzfqdwsr6bp350mvzcp643fjdd2g4c"))))
+      (build-system binary-build-system)
+      (inputs
+       `(("gcc:lib" ,gcc "lib")))
+      (arguments
+       `(#:patchelf-plan
+	 '(("usr/lib/astah_professional/lib/rlm/librlm1701.so" ("gcc:lib"))
+	   ("usr/lib/astah_professional/lib/rlm/x64/librlm1701.so" ("gcc:lib"))
+	   ("usr/lib/astah_professional/lib/rlm/x86/librlm1233.so" ("gcc:lib")))
+	 #:install-plan
+	 '(("usr/lib/" "lib")
+	   ("usr/bin/" "bin")
+	   ("usr/share/" "share"))))
+      (synopsis "Astah Professional, an Easy-to-use UML2.x modeler")
+      (description
+       "Full-Featured Software Modeling Tool for creating UML, ER Diagrams, DFD, Flowchart and more to create a clear understanding of your software design among teams.")
+      (home-page "http://astah.net/products/astah-professional")
+      (license (license:nonfree "file://lib/astah_professional/AstahLicenseAgreement-e.txt")))))
 
 ;; I moved the following two packages to my dotfiles.
 ;; Reason: I didn't find a universally elegant way to source the (or an empty) license file from a universally valid uri.
