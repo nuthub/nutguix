@@ -6,6 +6,29 @@
   #:use-module (guix build-system emacs)
   #:use-module (guix git-download))
 
+(define-public emacs-ttl-ts-mode
+  (package
+   (name "emacs-ttl-ts-mode")
+   (version "0.1")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://codeberg.org/nutcase/ttl-ts-mode")
+           (commit version)))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "18wb7vdrrhc8zy5vi1dk7qzj552q7c5vmfm88p6gl76cgzdfmvfv"))))
+   (build-system emacs-build-system)
+   (arguments (list #:tests? #f))      ; No tests upstream.
+   (home-page "https://codeberg.org/nutcase/ttl-ts-mode")
+   (synopsis
+    "Emacs Turtle and Notation 3 mode based on tree sitter grammar")
+   (description
+    "This package provides a tree-sitter based Emacs mode for editing
+ Turtle (RDF) files, supporting indentation.")
+   (license license:bsd-2)))
+
 (define-public emacs-ttl-mode
 ;; There are warnings:
 ;; phase `compress-elisp' succeeded after 0.0 seconds
@@ -54,5 +77,3 @@
 files, supporting indentation some electric punctuation, and hungry
 delete.")
       (license license:bsd-2))))
-
-
